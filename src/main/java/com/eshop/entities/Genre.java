@@ -20,7 +20,7 @@ public class Genre {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany(mappedBy = "genre", fetch = FetchType.LAZY, orphanRemoval = false)
+    @OneToMany(mappedBy = "genre", fetch = FetchType.LAZY)
     private Set<Book> book = new HashSet<>();
 
     private String name;

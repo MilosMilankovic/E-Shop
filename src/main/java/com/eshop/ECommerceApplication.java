@@ -1,24 +1,19 @@
 package com.eshop;
 
-import com.eshop.entities.Role;
-import com.eshop.entities.User;
-import com.eshop.entities.UserRole;
-import com.eshop.repositories.RoleRepository;
-import com.eshop.repositories.UserRepository;
-import com.eshop.repositories.UserRoleRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableTransactionManagement
 @EnableJpaRepositories({"com.eshop.repositories"})
 @EntityScan("com.eshop.entities")
+@EnableSwagger2
+@EnableWebMvc
 public class ECommerceApplication /*implements CommandLineRunner*/ {
 
 //	@Autowired
