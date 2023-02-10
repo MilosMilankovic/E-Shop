@@ -30,7 +30,7 @@ public class User /*implements UserDetails*/ {
     private String phone;
     private boolean enabled=true;
 
-//    jedan User moze da ima 1 ulogu userRoles
+//    jedan User moze da ima 1 rolu
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonIgnore
     private Set<UserRole> userRoles = new HashSet<>();

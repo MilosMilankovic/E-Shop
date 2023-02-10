@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -18,9 +19,9 @@ public class BookController {
 
     @PostMapping("/create")
 //    @PreAuthorize("hasRole('ADMIN') or hasRole('USER') or isAnonymous()")
-    public ResponseEntity<?> create(@RequestBody BookDTO bookDTO) {
-        bookService.create(bookDTO);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    public ResponseEntity<?> create(@Valid @RequestBody BookDTO bookDTO) {
+        BookDTO bookDto = bookService.create(bookDTO);
+        return new ResponseEntity<>(bookDto, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
