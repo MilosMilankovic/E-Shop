@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,7 +15,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @Table(name = "USERS")
-public class User /*implements UserDetails*/ {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

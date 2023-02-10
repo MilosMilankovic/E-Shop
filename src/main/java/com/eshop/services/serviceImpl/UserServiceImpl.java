@@ -8,6 +8,7 @@ import com.eshop.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Set;
 
 @Service
@@ -16,26 +17,13 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
 
-    public UserDto create(UserDto userDto) {
-
-//        Genre genre = genreRepository.findByName(bookDTO.getGenreName());
-//
-//        Book book = BookMapper.INSTANCE.dtoToEntity(bookDTO);
-//        book.setGenre(genre);
-
-//        User savedUser = userRepository.save(user);
-//        return BookMapper.INSTANCE.entityToDto(savedBook);
-
+    @Transactional
+    public User createUser(User user, Set<UserRole> userRoles) throws Exception {
         return null;
     }
 
     @Override
     public User findByUsername(String username) {
-        return null;
-    }
-
-    @Override
-    public User createUser(User user, Set<UserRole> userRoles) throws Exception {
         return null;
     }
 

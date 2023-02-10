@@ -2,8 +2,6 @@ package com.eshop.entities;
 
 
 
-import com.eshop.entities.Role;
-import com.eshop.entities.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +13,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "USER_ROLE")
+@Table(name = "USER_ROLES")
 public class UserRole {
 
     @Id
