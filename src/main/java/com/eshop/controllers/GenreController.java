@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -18,9 +19,9 @@ public class GenreController {
 
     @PostMapping("/create")
 //    @PreAuthorize("hasRole('ADMIN') or hasRole('USER') or isAnonymous()")
-    public ResponseEntity<?> create(@RequestBody GenreDTO genreDto) {
-        genreService.create(genreDto);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    public ResponseEntity<?> create(@Valid @RequestBody GenreDTO genreDto) {
+        GenreDTO genreDTO = genreService.create(genreDto);
+        return new ResponseEntity<>(genreDTO, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
@@ -30,12 +31,13 @@ public class GenreController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-//    @GetMapping("/getAll")
-//    public ResponseEntity<?> getAll(){
-//        List<BookDTO> bookDTOList = bookService.getAll();
-//        return new ResponseEntity<>(bookDTOList, HttpStatus.OK);
-//    }
-//
+    @GetMapping("/getAll")
+    public ResponseEntity<?> getAll(){
+        List<GenreDTO> genreDTOList = genreService.getAll();
+        return new ResponseEntity<>(genreDTOList, HttpStatus.OK);
+    }
+
+
 //    @GetMapping("/getById")
 //    public ResponseEntity<?> getById(@RequestParam long id) {
 //        BookDTO bookDTO = bookService.getById(id);

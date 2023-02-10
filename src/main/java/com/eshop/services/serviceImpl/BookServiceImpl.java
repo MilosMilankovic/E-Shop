@@ -24,15 +24,15 @@ public class BookServiceImpl implements BookService {
     GenreRepository genreRepository;
 
     @Override
-    public void create(BookDTO bookDTO) {
+    public BookDTO create(BookDTO bookDTO) {
 
         Genre genre = genreRepository.findByName(bookDTO.getGenreName());
 
         Book book = BookMapper.INSTANCE.dtoToEntity(bookDTO);
-
         book.setGenre(genre);
 
-        bookRepository.save(book);
+        Book savedBook = bookRepository.save(book);
+        return BookMapper.INSTANCE.entityToDto(savedBook);
     }
 
     @Override

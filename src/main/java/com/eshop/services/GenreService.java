@@ -6,10 +6,10 @@ import java.util.List;
 
 public interface GenreService {
 
-    void create(GenreDTO genreDto);
+    GenreDTO create(GenreDTO genreDto);
 
     void delete(Long id);
-//    List<BookDTO> getAll();
+    List<GenreDTO> getAll();
 //
 //    BookDTO getById(long id);
 

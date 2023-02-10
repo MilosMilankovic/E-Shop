@@ -1,28 +1,50 @@
 package com.eshop.dto;
 
-import com.eshop.entities.Genre;
 import lombok.Data;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Data
 public class BookDTO {
 
     private Long id;
 
+    @NotBlank
     private String title;
+
+    @NotBlank
     private String author;
+
+    @NotBlank
     private String publisher;
+
+    @NotBlank
     private String publicationDate;
+
+    @NotBlank
     private String language;
+
+    @NotBlank
     private String genreName;
-    private int numberOfPages;
+
+    @NotNull
+    private Integer numberOfPages;
+
+    @NotBlank
     private String format;
-    private int isbn;
-    private double shippingWeight;
-    private double listPrice;
-    private double ourPrice;
+
+    @NotNull
+    private Integer isbn;
+
+    private Double shippingWeight;
+    private Double listPrice;
+    private Double ourPrice;
     private boolean active;
     private String description;
-    private int inStockNumber;
+
+    @NotNull
+    private Integer inStockNumber;
 
     //slika
 }

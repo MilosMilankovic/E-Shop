@@ -1,5 +1,6 @@
 package com.eshop.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,8 +21,8 @@ public class Role {
     private int id;
     private String name;
 
-    // veza izmedju ove klase Role i userRoles, jednu Role (ulogu) moze vise korisnika User da ima
     @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<UserRole> userRoles = new HashSet<>();
 
 

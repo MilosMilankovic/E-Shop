@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 public class GenreServiceImpl implements GenreService {
@@ -17,14 +18,20 @@ public class GenreServiceImpl implements GenreService {
     GenreRepository genreRepository;
 
     @Transactional
-    public void create(GenreDTO genreDTO) {
+    public GenreDTO create(GenreDTO genreDTO) {
         Genre genre = GenreMapper.INSTANCE.toEntity(genreDTO);
-        genreRepository.save(genre);
+        Genre savedGenre = genreRepository.save(genre);
+        return GenreMapper.INSTANCE.toDto(savedGenre);
     }
 
     @Transactional
     public void delete(Long id) {
         genreRepository.deleteById(id);
+    }
+
+    @Override
+    public List<GenreDTO> getAll() {
+        return GenreMapper.INSTANCE.toDtoList(genreRepository.findAll());
     }
 
     //    @Override
