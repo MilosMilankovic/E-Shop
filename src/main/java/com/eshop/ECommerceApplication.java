@@ -26,8 +26,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EntityScan("com.eshop.entities")
 @EnableSwagger2
 @EnableWebMvc
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+//@EnableWebSecurity
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ECommerceApplication implements CommandLineRunner {
 
 	@Autowired
