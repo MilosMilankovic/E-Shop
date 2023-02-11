@@ -2,19 +2,20 @@ package com.eshop.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
 @Table(name = "USERS")
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class User {
 
     @Id
@@ -22,10 +23,24 @@ public class User {
     @Column(name = "id", nullable = false, updatable = false)
     private Long id;
 
+    @NotBlank
+    @Column(name = "USERNAME", unique = true)
+//    @Size(min = 3, max = 50)
     private String username;
+
+    @NotBlank
+//    @Size(min = 3, max = 50)
     private String password;
+
+    @NotBlank
+//    @Size(min = 2, max = 40)
     private String firstName;
+
+    @NotBlank
+//    @Size(min = 2, max = 40)
     private String lastName;
+
+//    @Size(min = 5, max = 30)
     private String phone;
     private boolean enabled=true;
 
@@ -33,31 +48,4 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonIgnore
     private Set<UserRole> userRoles = new HashSet<>();
-
-//    @Override
-//    public Collection<? extends GrantedAuthority> getAuthorities() {
-//        Set<GrantedAuthority> authorities = new HashSet<>();
-//        userRoles.forEach(ur -> authorities.add(new Authority(ur.getRole().getName())));
-//        return authorities;
-//    }
-//
-//    @Override
-//    public boolean isAccountNonExpired() {
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean isAccountNonLocked() {
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean isCredentialsNonExpired() {
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean isEnabled() {
-//        return enabled;
-//    }
 }

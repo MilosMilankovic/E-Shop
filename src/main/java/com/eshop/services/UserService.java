@@ -14,4 +14,6 @@ public interface UserService {
     User findByUsername(String username);
     User createUser(User user, Set<UserRole> userRoles) throws Exception;
 
+    Boolean existsByUsername(String username);
+
 }

@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class MyUserPrincipal implements UserDetails {
@@ -19,10 +20,14 @@ public class MyUserPrincipal implements UserDetails {
         return user;
     }
 
+    public Long getId() {
+        return user.getId();
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<GrantedAuthority> authorities = new HashSet<>();
-        user.getUserRoles().forEach(ur -> authorities.add(new Authority(ur.getRole().getName())));
+        user.getUserRoles().forEach(ur -> authorities.add(new Authority(ur.getRole().getName().name())));
         return authorities;
     }
 
@@ -54,5 +59,18 @@ public class MyUserPrincipal implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MyUserPrincipal that = (MyUserPrincipal) o;
+        return Objects.equals(user, that.user);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(user);
     }
 }

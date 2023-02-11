@@ -6,6 +6,7 @@ import com.eshop.entities.UserRole;
 import com.eshop.repositories.RoleRepository;
 import com.eshop.repositories.UserRepository;
 import com.eshop.repositories.UserRoleRepository;
+import com.eshop.security.ERole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -32,7 +33,7 @@ public class ECommerceApplication implements CommandLineRunner {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	@Autowired
-UserRoleRepository userRoleRepository;
+	UserRoleRepository userRoleRepository;
 
 	@Autowired
 	RoleRepository roleRepository;
@@ -47,8 +48,12 @@ UserRoleRepository userRoleRepository;
 	@Override
 	public void run(String... args) throws Exception {
 
+
+		if (userRepository.existsByUsername("admin@gmail.com") && userRepository.existsByUsername("user@gmail.com"))
+			return;
+
 		Role role = new Role();
-		role.setName("ADMIN");
+		role.setName(ERole.ROLE_ADMIN);
 
 		roleRepository.save(role);
 
@@ -72,14 +77,14 @@ UserRoleRepository userRoleRepository;
 
 
 		Role role2 = new Role();
-		role2.setName("USER");
+		role2.setName(ERole.ROLE_USER);
 
 		roleRepository.save(role2);
 
 		User user2 = new User();
 		user2.setUsername("user@gmail.com");
 
-		user2.setPassword(passwordEncoder.encode("admin"));
+		user2.setPassword(passwordEncoder.encode("user"));
 
 		user2.setFirstName("Pera");
 		user2.setLastName("Peric");

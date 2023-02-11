@@ -1,5 +1,6 @@
 package com.eshop.entities;
 
+import com.eshop.security.ERole;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +21,10 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, updatable = false)
     private int id;
-    private String name;
+
+    @Column(length = 20)
+    @Enumerated(EnumType.STRING)
+    private ERole name;
 
     @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
