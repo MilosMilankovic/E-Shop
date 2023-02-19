@@ -44,6 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/genre/**",
             "/user/**",
             "/book/**",
+            "/v2/api-docs", "/configuration/**", "/swagger*/**", "/webjars/**",
             "/myAccount"
     };
 

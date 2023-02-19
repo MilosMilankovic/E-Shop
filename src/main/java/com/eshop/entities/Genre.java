@@ -14,13 +14,23 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @Table(name = "GENRES")
+
+//@NamedEntityGraph(
+//        name = "Genre.book",
+//        attributeNodes =  {
+//                @NamedAttributeNode("book")
+//        }
+//)
 public class Genre {
+
+
+    public static final String WITH_BOOK_GRAPH = "Genre.book";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany(mappedBy = "genre", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "genre", fetch = FetchType.LAZY) //za @OneToMany hibernate tretira kao LAZy, ne vraca ti tu kolekciju iz baze
     private Set<Book> book = new HashSet<>();
 
     private String name;

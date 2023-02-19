@@ -12,19 +12,18 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class GenreServiceImpl implements GenreService {
 
     @Autowired
     GenreRepository genreRepository;
 
-    @Transactional
     public GenreDTO create(GenreDTO genreDTO) {
         Genre genre = GenreMapper.INSTANCE.toEntity(genreDTO);
         Genre savedGenre = genreRepository.save(genre);
         return GenreMapper.INSTANCE.toDto(savedGenre);
     }
 
-    @Transactional
     public void delete(Long id) {
         genreRepository.deleteById(id);
     }

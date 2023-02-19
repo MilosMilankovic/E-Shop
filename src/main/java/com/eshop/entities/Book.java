@@ -1,10 +1,15 @@
 package com.eshop.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.LazyGroup;
+import org.hibernate.annotations.LazyToOne;
+import org.hibernate.annotations.LazyToOneOption;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -30,14 +35,22 @@ public class Book {
     private double shippingWeight;
     private double listPrice;
     private double ourPrice;
-    private boolean active;
+    private boolean active=true;
     private String description;
     private int inStockNumber;
+    private int quantity;
 
     //slika
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "genre_id")
+    @LazyToOne(LazyToOneOption.NO_PROXY)
+    @LazyGroup("genre")
     private Genre genre;
+
+
+    @OneToMany(mappedBy = "book")
+    @JsonIgnore
+    private List<BookToCartItem> bookToCartItems;
 
 }
